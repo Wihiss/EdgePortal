@@ -9,6 +9,7 @@ namespace EdgePortal.Storage.Interfaces.Blog
 {
     public interface IBlogManager
     {
+        Task<List<PostModel>> GetAllPosts();
         Task<List<PostModel>> GetPosts(int recordCount);
         Task<List<PostModel>> GetUserPosts(string userName);
         Task<PostModel> AddPost(PostModel post);

@@ -21,6 +21,9 @@ namespace FamilyPortal.Storage.Impl.Mongo
 
         public MongoStorage(/*IPasswordHasher passwordHasher*/string dbConnection)
         {
+            if (string.IsNullOrEmpty(dbConnection))
+                throw new ArgumentException(nameof(dbConnection) + " cannot be null or empty");
+
             /*if (passwordHasher == null)
                 throw new ArgumentNullException(nameof(passwordHasher));*/
 

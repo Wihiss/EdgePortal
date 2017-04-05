@@ -19,7 +19,7 @@ namespace EdgePortal.Storage.Implementations.Mongo
         internal MongoBlogManager(MongoDatabaseMaster database)
         {
             if (database == null)
-                throw new ArgumentNullException(nameof(database));
+                throw new ArgumentNullException(nameof(database) + " cannot be null");
 
             _database = database;
 
@@ -32,32 +32,54 @@ namespace EdgePortal.Storage.Implementations.Mongo
 
         public Task<PostModel> AddPost(PostModel post)
         {
+            if (post == null)
+                throw new ArgumentNullException(nameof(post) + " cannot be null");
+
             return Task<PostModel>.Run(async () => { await _database.Blog.InsertOneAsync(post); return post; });
         }
 
         public Task<PostModel> FindPost(string id)
-        {            
+        {
+            if (string.IsNullOrEmpty(id))
+                throw new ArgumentException(nameof(id) + " cannot be null or empty");
+
             return _database.Blog.Find(x => x.Id == id).SingleOrDefaultAsync();
         }
 
         public Task DeletePost(string id)
         {
+            if (string.IsNullOrEmpty(id))
+                throw new ArgumentException(nameof(id) + " cannot be null or empty");
+
             return _database.Blog.DeleteOneAsync(x => x.Id == id);
+        }
+
+        public Task<List<PostModel>> GetAllPosts()
+        {
+            return GetPostsInt(-1);
         }
 
         public Task<List<PostModel>> GetPosts(int recordCount)
         {
-            return _database.Blog.Find(new BsonDocument()).
-                                        SortByDescending(x => x.CreationTime).
-                                            Limit(recordCount < 0 ? null : (int?) recordCount).ToListAsync();
+            if (recordCount < 0)
+                throw new ArgumentException(nameof(recordCount) + " cannot be less than zero");
+
+            return GetPostsInt(recordCount);
         }
 
         public Task<List<PostModel>> GetUserPosts(string userName)
         {
             if (userName == null)
-                throw new ArgumentNullException(nameof(userName));
+                throw new ArgumentNullException(nameof(userName) + " cannot be null");
 
             return _database.Blog.Find(x => x.Author == userName).ToListAsync();
+        }    
+        
+        private Task<List<PostModel>> GetPostsInt(int recordCount)
+        {
+            return _database.Blog.Find(new BsonDocument()).
+                                        SortByDescending(x => x.CreationTime).
+                                            Limit(recordCount < 0 ? null : (int?)recordCount).ToListAsync();
         }
     }
 }
