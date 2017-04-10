@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 
-namespace EdgePortal.Api.Controllers
+namespace EdgePortal.Controllers
 {
     /// <summary>
     /// Class StorageBasedController. Base class for all controllers that use IStorage interface.
@@ -24,7 +24,7 @@ namespace EdgePortal.Api.Controllers
         protected StorageBasedController()
         {
             // Init a reference to IStorage interface.
-            _storage = NinjectResolver.Instance.GetBinding<IStorage>();
+            // _storage = NinjectResolver.Instance.GetBinding<IStorage>();
         }
     }
 }

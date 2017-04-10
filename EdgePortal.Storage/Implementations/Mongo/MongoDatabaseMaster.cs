@@ -11,7 +11,7 @@ namespace EdgePortal.Storage.Implementations.Mongo
     internal class MongoDatabaseMaster
     {
         // private const string ACCOUNTS_COLLECTION = "Accounts";
-        private const string BLOG_COLLECTION = "Blog";
+        private const string BLOG_COLLECTION = "blog";
 
         private readonly IMongoDatabase _database;
 

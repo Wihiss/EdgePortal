@@ -9,7 +9,7 @@ using EdgePortal.Infrastructure.DI;
 using FamilyPortal.Storage.Impl.Mongo;
 using System.Configuration;
 
-namespace EdgePortal.Api
+namespace EdgePortal
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
@@ -17,8 +17,8 @@ namespace EdgePortal.Api
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
 
-            NinjectResolver.Instance.BindAsSingletone<IStorage, MongoStorage>().WithConstructorArgument("dbConnection",
-                ConfigurationManager.ConnectionStrings["EdgePortal"].ConnectionString);
-        }
+            /*NinjectResolver.Instance.BindAsSingletone<IStorage, MongoStorage>().WithConstructorArgument("dbConnection",
+                ConfigurationManager.ConnectionStrings["EdgePortal"].ConnectionString);*/
+           }
     }
 }

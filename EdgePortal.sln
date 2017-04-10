@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgePortal.Model", "EdgePor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgePortal.Storage", "EdgePortal.Storage\EdgePortal.Storage.csproj", "{5643AD1F-8AE3-4FF0-AB7D-99C57982F943}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgePortal.Api", "EdgePortal.Api\EdgePortal.Api.csproj", "{EE646C21-065D-449B-AA80-3357BD7F77C3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgePortal", "EdgePortal\EdgePortal.csproj", "{293A5612-4027-464A-A74B-58723C6043C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{5643AD1F-8AE3-4FF0-AB7D-99C57982F943}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5643AD1F-8AE3-4FF0-AB7D-99C57982F943}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5643AD1F-8AE3-4FF0-AB7D-99C57982F943}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EE646C21-065D-449B-AA80-3357BD7F77C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EE646C21-065D-449B-AA80-3357BD7F77C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EE646C21-065D-449B-AA80-3357BD7F77C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EE646C21-065D-449B-AA80-3357BD7F77C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{293A5612-4027-464A-A74B-58723C6043C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{293A5612-4027-464A-A74B-58723C6043C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{293A5612-4027-464A-A74B-58723C6043C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{293A5612-4027-464A-A74B-58723C6043C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

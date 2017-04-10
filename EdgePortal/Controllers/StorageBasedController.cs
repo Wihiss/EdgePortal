@@ -3,19 +3,28 @@ using EdgePortal.Storage.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
-namespace EdgePortal.Api.Controllers
+namespace EdgePortal.Controllers
 {
+    /// <summary>
+    /// Class StorageBasedController. Base class for all controllers that use IStorage interface.
+    /// </summary>
     public abstract class StorageBasedController : ApiController
     {
-        protected readonly IStorage _storage;
+        /// <summary>
+        /// Reference to IStorage interface.
+        /// </summary>
+        protected IStorage _storage;
 
+        /// <summary>
+        /// Protected constructor.
+        /// </summary>
         protected StorageBasedController()
         {
-            _storage = NinjectResolver.Instance.GetBinding<IStorage>();
+            // Init a reference to IStorage interface.
+            // _storage = NinjectResolver.Instance.GetBinding<IStorage>();
         }
     }
 }

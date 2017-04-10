@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Edge Portal - Blog</title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <!-- Static navbar -->
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">Edge Portal</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div><!--/.container-fluid -->
+        </nav>
+    </div> <!-- /container -->
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Blog</h1>
+            <p>
+                Share your thoughts.
+            </p>
+            <a href="#newPost" class="btn btn-primary" data-toggle="collapse">Add Post</a>
+            <div id="newPost" class="collapse">
+                <form>
+                    <div class="form-group">
+                        <label for="caption">Caption:</label>
+                        <input type="text" class="form-control" id="caption">
+                    </div>
+                    <div class="form-group">
+                        <label for="content">Text:</label>
+                        <textarea class="form-control" rows="5" id="content"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">                
+            </div>
+        </div>
+    </div>
+    <script src="Scripts/jquery-1.9.1.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+</body>
+</html>
