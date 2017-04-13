@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EdgePortal.Model.Blog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -22,6 +23,13 @@ namespace EdgePortal.Controllers
         public async Task<IHttpActionResult> GetPosts()
         {
             return Ok(await _storage.BlogManager.GetAllPosts());
+        }
+
+        [HttpPost]
+        [Route("addPost")]
+        public async Task<IHttpActionResult> AddPost(PostModel post)
+        {
+            return Ok(await _storage.BlogManager.AddPost(post));
         }
     }
 }

@@ -35,6 +35,8 @@ namespace EdgePortal.Storage.Implementations.Mongo
             if (post == null)
                 throw new ArgumentNullException(nameof(post) + " cannot be null");
 
+            post.CreationTime = DateTime.UtcNow;
+
             return Task<PostModel>.Run(async () => { await _database.Blog.InsertOneAsync(post); return post; });
         }
 

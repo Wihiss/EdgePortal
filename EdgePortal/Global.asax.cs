@@ -17,8 +17,8 @@ namespace EdgePortal
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
 
-            // NinjectResolver.Instance.BindAsSingletone<IStorage, MongoStorage>().WithConstructorArgument("dbConnection",
-            //    ConfigurationManager.ConnectionStrings["EdgePortal"].ConnectionString);
+            NinjectResolver.Instance.BindAsSingletone<IStorage, MongoStorage>().WithConstructorArgument("dbConnection",
+                ConfigurationManager.ConnectionStrings["EdgePortal"].ConnectionString);
         }
     }
 }

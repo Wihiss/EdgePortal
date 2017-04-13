@@ -24,7 +24,7 @@ namespace EdgePortal.Controllers
         protected StorageBasedController()
         {
             // Init a reference to IStorage interface.
-            // _storage = NinjectResolver.Instance.GetBinding<IStorage>();
+            _storage = NinjectResolver.Instance.GetBinding<IStorage>();
         }
     }
 }
