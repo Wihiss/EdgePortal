@@ -20,6 +20,7 @@ namespace EdgePortal.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Route("getPosts")]
         public async Task<IHttpActionResult> GetPosts()
         {
             return Ok(await _storage.BlogManager.GetAllPosts());

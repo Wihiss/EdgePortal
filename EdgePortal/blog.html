@@ -48,13 +48,18 @@
                 </form>
             </div>
         </div>
-        <div class="panel panel-default">
-            <div class="panel-body">                
-            </div>
+        <div class="panel panel-default" id="postsPanel">            
         </div>
     </div>
     <script src="Scripts/jquery-1.9.1.js"></script>
     <script src="Scripts/bootstrap.js"></script>
+
+    <style>
+        .vertical-align {
+            display: flex;
+            align-items: center;
+        }
+    </style>
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -76,12 +81,65 @@
                             console.log(jqXHR);
                             alert("success..." + data);
                         },
-                        error: function (xhr) {
-                            alert(xhr.responseText);
+                        error: function (request, message, error) {
+                            handleException(request, message, error);
                         }
                     });
             });
         });
+
+        $(document).ready(function () {
+            displayPosts();
+        });
+
+        function displayPosts() {
+            
+            $.ajax({
+                url: '/api/blog/getPosts',
+                type: 'GET',
+                dataType: 'json',
+                success: function (posts) {
+                    
+                    $.each(posts, function (index, post) {
+                        addPost(post);
+                    });
+                },
+                error: function (request, message, error) {
+                    handleException(request, message, error);
+                }
+            });
+        };
+
+        function addPost(post) {
+
+            if ($("#postsPanelBody").length == 0) {
+                $("#postsPanel").append(
+                    '<div class="panel-body" id="postsPanelBody"></div>'
+                );
+            };
+            
+            $("#postsPanelBody").append(
+                '<div class="panel panel-default" id="postPanel' + post.Id + '">' +
+                '<div class="panel-heading"><h1>' + post.Title + 
+                '<button type="button" class="btn btn-default btn-sm pull-right"><span class="glyphicon glyphicon-remove"></span>Remove</button >' +
+                '</h1>' +
+                '</div >' +
+                '<div class="panel-body">' + post.Text + '</div>' +
+                '</div>'
+            );
+        };
+
+        function handleException(request, message, error) {
+            var msg = "";
+            msg += "Code: " + request.status + "\n";
+            msg += "Text: " + request.statusText + "\n";
+            if (request.responseJSON != null) {
+                msg += "Message" +
+                    request.responseJSON.Message + "\n";
+            }
+            alert(msg);
+        }
     </script>
+
 </body>
 </html>
