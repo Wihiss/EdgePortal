@@ -14,6 +14,6 @@ namespace EdgePortal.Storage.Interfaces.Blog
         Task<List<PostModel>> GetUserPosts(string userName);
         Task<PostModel> AddPost(PostModel post);
         Task<PostModel> FindPost(string postId);
-        Task DeletePost(string postId);
+        Task<bool> DeletePost(string postId);
     }
 }

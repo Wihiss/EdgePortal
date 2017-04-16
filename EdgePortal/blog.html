@@ -48,11 +48,13 @@
                 </form>
             </div>
         </div>
+        <div id="alert_placeholder"></div>
         <div class="panel panel-default" id="postsPanel">            
         </div>
     </div>
     <script src="Scripts/jquery-1.9.1.js"></script>
     <script src="Scripts/bootstrap.js"></script>
+    <script src="Scripts/bootstrap-confirmation.js"></script>
 
     <style>
         .vertical-align {
@@ -76,10 +78,8 @@
                         method: 'post',
                         data: JSON.stringify(postData),
                         success: function (data, status, jqXHR) {
-                            console.log(data);
-                            console.log(status);
-                            console.log(jqXHR);
-                            alert("success..." + data);
+                            addPost(data);
+                            bootstrap_alert.warning("Post '" + data.Title + "' added.");
                         },
                         error: function (request, message, error) {
                             handleException(request, message, error);
@@ -121,7 +121,8 @@
             $("#postsPanelBody").append(
                 '<div class="panel panel-default" id="postPanel' + post.Id + '">' +
                 '<div class="panel-heading"><h1>' + post.Title + 
-                '<button type="button" class="btn btn-default btn-sm pull-right"><span class="glyphicon glyphicon-remove"></span>Remove</button >' +
+                '<button class="btn btn-default btn-sm pull-right" data-id="' + post.Id +
+                '" onclick="onDeletePost(this);"><span class="glyphicon glyphicon-remove"></span>Remove</button >' +
                 '</h1>' +
                 '</div >' +
                 '<div class="panel-body">' + post.Text + '</div>' +
@@ -138,7 +139,28 @@
                     request.responseJSON.Message + "\n";
             }
             alert(msg);
+        }        
+
+        function onDeletePost(deletePostBtn) {
+            var postId = $(deletePostBtn).data("id");
+
+            $.ajax({
+                url: "/api/blog/deletePost/" + postId,
+                type: 'DELETE',
+                success: function (product) {
+                    $(deletePostBtn).parent().parent().parent().remove();
+                },
+                error: function (request, message, error) {
+                    handleException(request, message, error);
+                }
+            });
+        };
+
+        bootstrap_alert = function () { }
+        bootstrap_alert.warning = function (message) {
+            $('#alert_placeholder').html('<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a><span>' + message + '</span></div>')
         }
+
     </script>
 
 </body>

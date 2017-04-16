@@ -32,5 +32,16 @@ namespace EdgePortal.Controllers
         {
             return Ok(await _storage.BlogManager.AddPost(post));
         }
+
+        [HttpDelete]
+        [Route("deletePost/{postId}")]
+        public async Task<IHttpActionResult> DeletePost(string postId)
+        {
+            bool deleted = await _storage.BlogManager.DeletePost(postId);
+            if (deleted)
+                return Ok(true);
+
+            return NotFound();
+        }
     }
 }

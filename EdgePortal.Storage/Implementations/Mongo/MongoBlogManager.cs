@@ -48,12 +48,16 @@ namespace EdgePortal.Storage.Implementations.Mongo
             return _database.Blog.Find(x => x.Id == id).SingleOrDefaultAsync();
         }
 
-        public Task DeletePost(string id)
+        public Task<bool> DeletePost(string id)
         {
             if (string.IsNullOrEmpty(id))
                 throw new ArgumentException(nameof(id) + " cannot be null or empty");
 
-            return _database.Blog.DeleteOneAsync(x => x.Id == id);
+            return Task.Run(async () => {
+
+                DeleteResult res = await _database.Blog.DeleteOneAsync(x => x.Id == id);
+                return res.DeletedCount > 0;
+            });
         }
 
         public Task<List<PostModel>> GetAllPosts()
